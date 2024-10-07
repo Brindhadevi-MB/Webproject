@@ -1,0 +1,222 @@
+LOGIN PAGE:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+body {
+background-color: #f0f0f0; 
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+.login-container {
+background-image: url('./diksha1.jpg'); 
+background-size: cover; 
+background-position: center; 
+padding: 20px;
+border: 3px solid rgb(255, 192, 254); 
+border-radius: 3px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+width: 300px; 
+text-align: center; 
+}
+input[type="text"], input[type="password"] {
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: rgba(255, 255, 255, 0.8); 
+}
+input[type="submit"] {
+padding: 10px 15px;
+background-color: rgb(192, 248, 255);
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+input[type="submit"]:hover {
+background-color: rgb(128, 216, 240); 
+}
+</style>
+</head>
+<body>
+<div class="login-container">
+<form action="my proj.html">
+<h1>Music player</h1>
+<label>Login:</label>
+<input type="text" name="name" required><br>
+<label>Password:</label>
+<input type="password" name="pass" required><br>
+<input type="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>
+
+MUSIC PLAYER PAGE:
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="./Brindha.css">
+<script src="https://kit.fontawesome.com/04356be2ce.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+<div class="music-player">
+<nav>
+<div class="circle">
+<i class="fa-solid fa-angles-left"></i>
+</div>
+<div class="circle">
+<i class="fa-solid fa-bars"></i>
+</div>
+</nav>
+<img src="music.png" class="song-img" alt="Song Image"> 
+<h1>Despacito</h1>
+<p>Sid Sriram Music</p>
+<audio controls id="song">
+<source src="./b.mp3" type="audio/mpeg">
+</audio>
+<input type="range" value="0" id="diksha" min="0" step="0.1">
+<div class="controls">
+<div><i class="fa-solid fa-backward"></i></div>
+<div onclick="playpause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+<div><i class="fa-solid fa-forward"></i></div>
+</div>
+</div>
+</div>
+<script>
+let diksha = document.getElementById("diksha");
+let song = document.getElementById("song");
+let ctrlIcon = document.getElementById("ctrlIcon");
+song.addEventListener('loadedmetadata', function() {
+diksha.max = song.duration;
+});
+song.addEventListener('timeupdate', function() {
+diksha.value = song.currentTime;
+});
+function playpause() {
+if (song.paused) {
+song.play();
+ctrlIcon.classList.remove("fa-play");
+ ctrlIcon.classList.add("fa-pause");
+} else {
+song.pause();
+ctrlIcon.classList.remove("fa-pause");
+ctrlIcon.classList.add("fa-play");
+}
+}
+diksha.addEventListener('input', function() {
+song.currentTime = diksha.value;
+if (song.paused) {
+song.play();
+ctrlIcon.classList.remove("fa-play");
+ctrlIcon.classList.add("fa-pause");
+}
+});
+</script>
+</body>
+</html>
+
+CSS PAGE:
+*{
+margin:0;
+padding:0;
+font-family:'poppins','sans-serif';
+box-sizing:border-box;
+}
+.container{
+width:100%;
+height:100vh;
+background:#f189ff;
+display:flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+}
+.music-player{
+background:#ffe0f5;
+width: 400px;
+padding: 25px 35px;
+text-align: center;
+flex-wrap: wrap;
+
+}
+nav{
+display:flex;
+justify-content:space-between;
+margin-bottom:30px;
+}
+nav.circle{
+border: 50%;
+width: 40px;
+height: 40px;
+background:#fff;
+line-height: 40px;
+color: #f53192;
+box-shadow: 0 5px 10px rgba(255, 26, 26, 0.22);
+}
+.song-img{
+width: 85%;
+height: 70%;
+}
+.music-player h1{
+font-size: 20px;
+font-weight:400 ;
+color: #333;
+margin-top:20px ;
+}
+.music-player p{
+font-size:14px;
+color: #333;
+}
+#diksha{
+-webkit-appearance:button;
+width:100%;
+height:6px;
+background:#f53192 ;
+border-radius:4px ;
+cursor: pointer;
+margin: 40px 0;
+}
+#diksha::-webkit-slider-thumb{
+-webkit-appearance: none;
+background: #f53192;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+border: 8px solid #fff;
+box-shadow:0 5px 5px rgba(255,26,26,0.22);
+}
+.controls{
+display: flex;
+justify-content:center;
+align-items: center;
+}
+.controls div{
+height:30px;
+width:30px;
+margin:20px;
+background:#fff;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+color: #f53192;
+box-shadow:0 10px 20px rgba(255,26,26,0.22);
+cursor:pointer;
+}
+.controls div:nth-child(2){
+transform: scale(1.5);
+background: #f53192;
+color:#fff;
+
+}
+
